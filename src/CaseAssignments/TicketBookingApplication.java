@@ -7,13 +7,22 @@ import java.util.Scanner;
 
 public class TicketBookingApplication {
 
+	static int number = 0;
+	static int ticketpricenormal = 400;
+	static int ticketpricegold = 200;
+	static int ticketpricesilver = 150;
+	static int originalcostnormal = 0;
+	static int originalcostsilver = 0;
+	static int originalcostgold = 0;
+	static int goldclassinputnumber = 0;
+	static int silverclassinputnumber = 0;
+	static int totalinputnumber = 0;
+	static int totalcost = 0;
+	static boolean boolenavar = false;
+
 	public static void main(String[] args) {
 		// i was not able to solve 1 case when more than 1 ticket is booked with
 		// different categories like 3 tickets 1 normal, 1 gold and 1 silver
-
-		int number = 0, ticketpricenormal = 400, ticketpricegold = 200, ticketpricesilver = 150, originalcostnormal = 0,
-				originalcostsilver = 0, originalcostgold = 0, goldclassinputnumber = 0, silverclassinputnumber = 0,
-				totalcost = 0;
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Welcome to the world of cinema ");
@@ -31,29 +40,62 @@ public class TicketBookingApplication {
 			System.out.println("......Thank you visit again.....");
 
 		} else {
-			System.out.println("There are 3 categories of ticket 1. Normal 2.Gold Class and 3.Silver Class");
+			System.out.println(
+					"There are 3 categories of ticket 1. Normal- cost(400) 2.Gold Class- cost(200) and 3.Silver Class-cost(200)");
 			System.out.println("How many Gold class tickets do u need ?");
 			goldclassinputnumber = sc.nextInt();
-			System.out.println("How many Silver class tickets do u need ?");
-			silverclassinputnumber = sc.nextInt();
+			validategoldtickets();
+			if (!boolenavar) {
+				System.out.println("How many Silver class tickets do u need ?");
+				silverclassinputnumber = sc.nextInt();
+				validatesilvertickets();
+				calculatecost();
+				totalinputnumber = (number - (goldclassinputnumber + silverclassinputnumber));
+			}
 		}
+	}
 
-		if (goldclassinputnumber > 0 && goldclassinputnumber != 0) {
+	private static void calculatecost() {
+		if (goldclassinputnumber > 0 && goldclassinputnumber != 0 || totalinputnumber < 0 || totalinputnumber > 5) {
 			originalcostgold = goldclassinputnumber * ticketpricegold;
 			System.out.println("You have taken " + goldclassinputnumber
 					+ " gold class ticket, so cost of gold ticket(s) is:" + originalcostgold);
 		}
-		if (silverclassinputnumber > 0 && silverclassinputnumber != 0) {
+		if (silverclassinputnumber > 0 && silverclassinputnumber != 0 || totalinputnumber < 0 || totalinputnumber > 5) {
 			originalcostsilver = silverclassinputnumber * ticketpricesilver;
 			System.out.println("You have taken " + silverclassinputnumber
 					+ " silver class ticket, so cost of silver ticket(s) is:" + originalcostsilver);
 		}
-		if (number > 0 && number <= 5) {
+		if (number > 0 && number <= 5 && totalinputnumber <= 0 || totalinputnumber > 5) {
 			originalcostnormal = (number - (goldclassinputnumber + silverclassinputnumber)) * ticketpricenormal;
 			totalcost = originalcostnormal + originalcostgold + originalcostsilver;
 
 			System.out.println("You have taken " + number + "  ticket(s) in total so cost is:" + totalcost);
 		}
+
+	}
+
+	private static void validatesilvertickets() {
+		if ((goldclassinputnumber + silverclassinputnumber) > number || (goldclassinputnumber) > number
+				|| (silverclassinputnumber) > number) {
+			System.out.println("U have given wrong no of tickets :" + "Normal- " + number + " Gold class : "
+					+ goldclassinputnumber + " Silver class " + silverclassinputnumber + " , "
+					+ " Total number of tickets entered greater than ticket " + number);
+			boolenavar = true;
+		}
+
+	}
+
+	private static void validategoldtickets() {
+
+		if ((goldclassinputnumber + silverclassinputnumber) > number || (goldclassinputnumber) > number
+				|| (silverclassinputnumber) > number) {
+			System.out.println("U have given wrong no of tickets :" + "Normal- " + number + " Gold class : "
+					+ goldclassinputnumber + " Silver class " + silverclassinputnumber + " , "
+					+ " Total number of tickets entered greater than ticket " + number);
+			boolenavar = true;
+		}
+
 	}
 
 }
