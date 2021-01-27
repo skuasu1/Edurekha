@@ -75,7 +75,7 @@ public class TicketBookingApplication {
 
 	}
 
-	private static void validatesilvertickets() {
+	public static void validatesilvertickets() {
 		if ((goldclassinputnumber + silverclassinputnumber) > number || (goldclassinputnumber) > number
 				|| (silverclassinputnumber) > number) {
 			System.out.println("U have given wrong no of tickets :" + "Normal- " + number + " Gold class : "
@@ -86,7 +86,7 @@ public class TicketBookingApplication {
 
 	}
 
-	private static void validategoldtickets() {
+	public static void validategoldtickets() {
 
 		if ((goldclassinputnumber + silverclassinputnumber) > number || (goldclassinputnumber) > number
 				|| (silverclassinputnumber) > number) {
