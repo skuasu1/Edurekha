@@ -59,8 +59,12 @@ public class ArrayDisplaymodule2assignment {
 			System.out.println("\n");
 			name = sc.nextLine();
 			for (int i = 0; i < 5; i++) {
-				if (empname[i].equals(null) || (!empname[i].contains(name) || empname[i].equals(""))) {
-					System.out.println("Name you are searching is not found in the employee details");
+				if (empname[i].equals(null) || empname[i].equals("")) {
+					System.out.println("You have not entered the name to be searched");
+				}
+
+				if (!(empname[i].contains(name))) {
+					System.out.println("This " + name + " you are searching is not found in the employee details");
 				}
 				if (empname[i].contains(name)) {
 					System.out.println(name + " is found in the employee details table ");
